@@ -11,8 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let ballX = 0, ballY = 0;
     let glowX = 0, glowY = 0;
 
-    const speed = 0.28; // Snappier cursor
-    const glowSpeed = 0.08; // Snappier glow
+    const speed = 0.45; // Snappier cursor
+    const glowSpeed = 0.15; // Snappier glow
+
+    // Cache elements for animation loop
+    const heroBg = document.querySelector('.hero-bg');
+    const heroMid = document.querySelector('.hero-mid');
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -41,12 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hudData.innerText = `LOC: ${Math.round(ballX).toString().padStart(3, '0')} // ${Math.round(ballY).toString().padStart(3, '0')}`;
         }
 
-        // Layered Parallax
+        // Layered Parallax - Using cached elements
         const moveX = (ballX - window.innerWidth / 2) * 0.01;
         const moveY = (ballY - window.innerHeight / 2) * 0.01;
-
-        const heroBg = document.querySelector('.hero-bg');
-        const heroMid = document.querySelector('.hero-mid');
 
         if (heroBg) heroBg.style.transform = `scale(1.1) translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
         if (heroMid) heroMid.style.transform = `translate(${moveX * 1.5}px, ${moveY * 1.5}px)`;
